@@ -6,7 +6,7 @@ import NavbarScroll from './Components/Header/Navbar';
 function App() {
   return (
     <>
-    <NavbarScroll/>
+    <NavbarScroll title="textutils" homeTitle="Home" aboutTitle="About"/>
     </>
   );
 }

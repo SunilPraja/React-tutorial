@@ -4,12 +4,14 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import PropTypes from 'prop-types'
 
-const NavbarScroll = () => {
-    return (
-        <Navbar expand="lg" className="bg-body-tertiary">
+
+export default function NavbarScroll(props) {
+  return (
+    <Navbar expand="lg" className="bg-body-tertiary">
             <Container >
-                <Navbar.Brand href="#">Textutils</Navbar.Brand>
+                <Navbar.Brand href="#">{props.title}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -17,8 +19,8 @@ const NavbarScroll = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Home</Nav.Link>
-                        <Nav.Link href="#action2">About</Nav.Link>
+                        <Nav.Link href="#action1">{props.homeTitle}</Nav.Link>
+                        <Nav.Link href="#action2">{props.aboutTitle}</Nav.Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
@@ -32,7 +34,10 @@ const NavbarScroll = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    )
+  )
 }
 
-export default NavbarScroll
+
+NavbarScroll.propTypes = {
+    title: PropTypes.string
+};
