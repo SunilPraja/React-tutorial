@@ -26,7 +26,9 @@ const News = ({
         throw new Error("Failed to fetch news data");
       }
       const parsedData = await response.json();
-      setArticles((prevArticles) => (page === 1 ? parsedData.articles : [...prevArticles, ...parsedData.articles]));
+      setArticles((prevArticles) =>
+        page === 1 ? parsedData.articles : [...prevArticles, ...parsedData.articles]
+      );
       setTotalResults(parsedData.totalResults || 0);
     } catch (error) {
       console.error("Error fetching news data:", error);
@@ -34,14 +36,18 @@ const News = ({
       setLoading(false);
       setProgress(100);
     }
-    
   }, [country, category, page, pageSize, newsApi, setProgress]);
 
   useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+    setPage(1);
+    setArticles([]);
+  }, [category, country]);
 
-  const fetchMoreData = async () => {
+  useEffect(() => {
+    fetchNews();
+  }, [fetchNews, page]);
+
+  const fetchMoreData = () => {
     setPage((prevPage) => prevPage + 1);
   };
 
@@ -69,15 +75,31 @@ const News = ({
           loader={<Loader />}
         >
           <div className="mx-auto mb-3 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {articles.map((element) => (
+            {articles.map((element, index) => (
               <NewsItem
-                key={element.url}
+                key={`${element.url}-${index}`}
                 url={element.url}
-                description={element.description ? element.description.slice(0, 67) : " "}
+                description={
+                  element.description
+                    ? element.description.slice(0, 67)
+                    : " "
+                }
                 author={element.author ? element.author : "Unknown"}
-                title={element.title ? element.title.slice(0, 67) : "Title Not Added"}
-                urlToImage={element.urlToImage ? element.urlToImage : "https://dummyimage.com/1280x720/fff/aaa"}
-                publishedAt={element.publishedAt ? formatDate(element.publishedAt) : "Unknown Date"}
+                title={
+                  element.title
+                    ? element.title.slice(0, 67)
+                    : "Title Not Added"
+                }
+                urlToImage={
+                  element.urlToImage
+                    ? element.urlToImage
+                    : "https://dummyimage.com/1280x720/fff/aaa"
+                }
+                publishedAt={
+                  element.publishedAt
+                    ? formatDate(element.publishedAt)
+                    : "Unknown Date"
+                }
               />
             ))}
           </div>
