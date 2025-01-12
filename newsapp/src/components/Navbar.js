@@ -12,9 +12,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
-  return (
-    <Disclosure as="nav" className="bg-gray-800">
+ function Navbar() {
+  return (  
+    <Disclosure as="nav" className="bg-gray-800 sticky top-0 z-40">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -109,8 +109,8 @@ export default function Example() {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pb-3 pt-2">
+      <DisclosurePanel className="sm:hidden z-50 relative">
+        <div className="space-y-1 px-2 pb-3 pt-2 ">
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
@@ -130,3 +130,5 @@ export default function Example() {
     </Disclosure>
   )
 }
+
+export default Navbar

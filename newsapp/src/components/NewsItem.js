@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react';
+import PropTypes from "prop-types";
 
-export class NewsItem extends Component {
-  render() {
-    let {author, title, description, url , urlToImage , publishedAt} = this.props;
+
+const NewsItem =(props) => {
+    let {author, title, description, url , urlToImage , publishedAt} = props;
     return (
       <article className="flex max-w-xl flex-col items-start justify-between">
         <img className="size-100 mb-2 rounded" src={urlToImage} alt="" />
@@ -35,7 +36,6 @@ export class NewsItem extends Component {
         </div>
       </article>
     )
-  }
 }
 
 export default NewsItem

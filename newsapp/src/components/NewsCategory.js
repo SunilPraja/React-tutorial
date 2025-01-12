@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-class NewsCategory extends Component {
-  render() {
+const NewsCategory =()=> {
     return (
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <ul className="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 sticky top-16 bg-white z-10 w-100">
+        <ul className="flex overflow-x-auto  text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
           <li className="me-2">
             <NavLink
               to="/"
@@ -93,7 +92,6 @@ class NewsCategory extends Component {
         </ul>
       </div>
     );
-  }
 }
 
 export default NewsCategory;

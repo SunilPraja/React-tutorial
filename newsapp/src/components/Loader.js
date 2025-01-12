@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import "../css/style.css"
 
-export class Loader extends Component {
-  render() {
+function Loader() {
     return (
         <div className="overlay">
         <span className="loader"></span>
         </div>
     )
-  }
 }
 
 export default Loader
